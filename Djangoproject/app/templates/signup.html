@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}signup{% endblock title %}
+{% block mid %}
+{% if msg %}
+    <p class="alert alert-success">{{msg}}</p>
+{% endif %}
+<p id="errmsg" class="alert alert-danger"></p>
+   <form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+    {% csrf_token %}
+       <table>
+           {{form}}
+       </table>
+        <div class="col-md-9">
+            <input type="password" name="cpass" class="form-control mb-2" id="cpwd">
+        </div>
+    <input type="submit" value="submit">
+</form>
+{% endblock mid %}
+{% block last %}
+{% endblock last %}

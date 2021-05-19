@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Meme Stream{% endblock title%}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <style>
+        #errmsg,  #captchaerr, #otpid, #verifybtn, #load{
+display: None;
+}
+*{
+    font-family: 'Ubuntu', sans-serif;
+}
+.main-section {
+    position: relative;
+
+}
+
+.main-content {
+    padding: 5vh 7%;
+}
+
+.user-avatar-link {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-avatar-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+a{
+cursor:pointer;
+}
+
+    </style>
+    {% block script %}
+    {% endblock script %}
+</head>
+<body onload="cap();">
+{% block nav %}
+<nav>
+    <div class="container-md navbar navbar-expand-md navbar-light bg-white">
+      <a class="navbar-brand" href="#">MemeStream</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo"
+        aria-controls="navbarTogglerDemo" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse bg-white" id="navbarTogglerDemo">
+
+        <div class="nav navbar-nav ml-auto">
+
+          <a class="nav-item nav-link " href="/"><strong>Home</strong></a>
+          <a class="nav-item nav-link" href="/"><strong>Login</strong></a>
+          <a class="nav-item nav-link" href="/verification/"><strong>Signup</strong></a>
+
+
+        </div>
+      </div>
+    </div>
+  </nav>
+{% endblock nav %}
+<div class="container">
+
+<div class="row">
+  <div class="col-md-3">
+    {% block first %}
+
+    {% endblock first %}
+  </div>
+  <div class="col-md-6">
+    {% block mid %}
+
+    {% endblock mid %}
+  </div>
+  <div class="col-md-3">
+    {% block last %}
+      {% if msg %}
+        <p class="alert alert-danger">{{msg}}</p>
+        {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+          <div class="form-group">
+            <label>Enter user id</label>
+            <input type="email" class="form-control"  placeholder="Enter email" name="email_id">
+          </div>
+          <div class="form-group">
+            <label >Password</label>
+            <input type="password" class="form-control"  placeholder="Password" name="paassword">
+          </div>
+          <button type="submit" class="btn btn-primary" >Submit</button>
+    </form>
+    {% endblock last %}
+  </div>
+</div>
+</div>
+</body>
+</html>
